@@ -1,4 +1,6 @@
-package providers;
+package providers.implementations;
+
+import providers.Provider;
 
 public class Radio2Provider extends Provider{
 	public Radio2Provider(){

@@ -1,4 +1,6 @@
-package providers;
+package providers.implementations;
+
+import providers.Provider;
 
 public class StuBruProvider extends Provider{
 	public StuBruProvider(){

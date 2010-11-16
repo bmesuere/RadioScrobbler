@@ -7,7 +7,7 @@ import gui.TrayMenu;
 import java.io.IOException;
 
 import providers.Provider;
-import providers.StuBruProvider;
+import providers.implementations.StuBruProvider;
 import util.AbstractModel;
 import ch.rolandschaer.ascrblr.scrobbler.AudioscrobblerService;
 import ch.rolandschaer.ascrblr.scrobbler.TrackInfo;
@@ -15,7 +15,7 @@ import ch.rolandschaer.ascrblr.util.ServiceException;
 
 public class RadioScrobbler extends AbstractModel {
 
-	private final static int INTERVAL = 5000;
+	private final static int INTERVAL = 10000;
 
 	private final MenuIcon menuIcon;
 	private final TrayMenu menu;
@@ -39,13 +39,12 @@ public class RadioScrobbler extends AbstractModel {
 		addChangeListener(menuIcon);
 
 		provider = new StuBruProvider();
-		
+
 		PasswordDialog pwd = new PasswordDialog();
-		if(pwd.getResult()){
+		if (pwd.getResult()) {
 			username = pwd.getUsername();
 			password = pwd.getPassword();
-		}
-		else
+		} else
 			System.exit(0);
 
 		go();
@@ -82,9 +81,7 @@ public class RadioScrobbler extends AbstractModel {
 					laatsteT = temp[1];
 					if (!laatsteT.equals("")) {
 						// create a new TrackInfo only when there's info
-						laatsteTI = new TrackInfo(
-								laatsteA,
-								laatsteT,
+						laatsteTI = new TrackInfo(laatsteA, laatsteT,
 								System.currentTimeMillis() - 5000,
 								ch.rolandschaer.ascrblr.scrobbler.TrackInfo.SourceType.R);
 						fireStateChanged();

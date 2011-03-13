@@ -21,13 +21,15 @@ public class MenuIcon extends TrayIcon implements ChangeListener {
 
 	// location of the image
 	// TODO: not working when packaged
-	private static final String IMG = "images/note.gif";
+	private static final String NOTE = "images/note.gif";
+	private static final String NOTE_PLAY = "images/note_play.gif";
+	private static final String NOTE_PAUSE = "images/note_pause.gif";
 
 	/**
 	 * creates a new menuicon and adds it to the system tray
 	 */
 	public MenuIcon() {
-		super(Toolkit.getDefaultToolkit().getImage(IMG));
+		super(Toolkit.getDefaultToolkit().getImage(NOTE));
 		try {
 			SystemTray.getSystemTray().add(this);
 		} catch (AWTException e) {
@@ -43,7 +45,13 @@ public class MenuIcon extends TrayIcon implements ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		// TODO: check before casting
 		RadioScrobbler rs = (RadioScrobbler) e.getSource();
-		setToolTip(rs.getProvider().getName() + ": " + rs.getCurrentTrack());
+		if (rs.isRunning()) {
+			setToolTip(rs.getProvider().getName() + ": " + rs.getCurrentTrack());
+			setImage(Toolkit.getDefaultToolkit().getImage(NOTE_PLAY));
+		} else {
+			setToolTip("Paused");
+			setImage(Toolkit.getDefaultToolkit().getImage(NOTE_PAUSE));
+		}
 	}
 
 }

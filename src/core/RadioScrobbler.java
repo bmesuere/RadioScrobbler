@@ -138,7 +138,7 @@ public class RadioScrobbler extends AbstractModel {
 			}
 			// TODO do something with these exceptions
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+			setRunning(false);
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

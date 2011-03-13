@@ -92,6 +92,8 @@ public class TrayMenu extends PopupMenu implements ChangeListener {
 					+ rs.getCurrentTrack());
 		} else {
 			nowPlaying.setLabel("Paused");
+			if (scrobbleItem.getState())
+				scrobbleItem.setState(false);
 		}
 	}
 

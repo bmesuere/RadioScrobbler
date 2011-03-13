@@ -57,6 +57,7 @@ public class PasswordDialog extends JDialog implements ActionListener {
 		pack();
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
+		getRootPane().setDefaultButton(ok);
 		setVisible(true);
 	}
 

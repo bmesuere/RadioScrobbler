@@ -3,7 +3,6 @@ package gui;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,13 +16,20 @@ import javax.swing.JTextField;
 
 public class PasswordDialog extends JDialog implements ActionListener {
 
+	// GUI objects used
 	private final JTextField username;
 	private final JPasswordField password;
 	private JButton ok, can;
-	private boolean result = false;
 	private GridBagConstraints gbc;
 
+	// boolean to check if user pressed ok or cancel
+	private boolean result = false;
+
+	/**
+	 * create a new password dialog
+	 */
 	public PasswordDialog() {
+		// boring GUI stuff
 		super((JDialog) null, "Enter your last.fm credentials", true);
 		setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
@@ -37,14 +43,14 @@ public class PasswordDialog extends JDialog implements ActionListener {
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		add(username, gbc);
-		gbc.gridy=1;
-		gbc.gridx=0;
-		add(new JLabel("Password:"),gbc);
-		gbc.gridx=1;
-		gbc.gridy=1;
+		gbc.gridy = 1;
+		gbc.gridx = 0;
+		add(new JLabel("Password:"), gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 1;
 		add(password, gbc);
-		gbc.gridy=2;
-		gbc.gridx=0;
+		gbc.gridy = 2;
+		gbc.gridx = 0;
 		gbc.gridwidth = 2;
 		gbc.insets = new Insets(0, 5, 0, 5);
 		addOKCancelPanel();
@@ -54,6 +60,9 @@ public class PasswordDialog extends JDialog implements ActionListener {
 		setVisible(true);
 	}
 
+	/**
+	 * Add the buttons to the dialog
+	 */
 	private void addOKCancelPanel() {
 		JPanel p = new JPanel();
 		p.setLayout(new FlowLayout());
@@ -61,6 +70,12 @@ public class PasswordDialog extends JDialog implements ActionListener {
 		add(p, gbc);
 	}
 
+	/**
+	 * Create new buttons and add them to given panel
+	 * 
+	 * @param p
+	 *            JPanel to which we add the buttons
+	 */
 	private void createButtons(JPanel p) {
 		p.add(ok = new JButton("OK"));
 		ok.addActionListener(this);
@@ -68,6 +83,9 @@ public class PasswordDialog extends JDialog implements ActionListener {
 		can.addActionListener(this);
 	}
 
+	/**
+	 * Close the dialog
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ok) {
@@ -78,16 +96,31 @@ public class PasswordDialog extends JDialog implements ActionListener {
 			setVisible(false);
 		}
 	}
-	
-	public String getUsername(){
+
+	/**
+	 * returns the username
+	 * 
+	 * @return
+	 */
+	public String getUsername() {
 		return username.getText();
 	}
-	
-	public String getPassword(){
+
+	/**
+	 * return the password
+	 * 
+	 * @return
+	 */
+	public String getPassword() {
 		return password.getText();
 	}
-	
-	public boolean getResult(){
+
+	/**
+	 * returns true when the user clicked ok
+	 * 
+	 * @return
+	 */
+	public boolean getResult() {
 		return result;
 	}
 }

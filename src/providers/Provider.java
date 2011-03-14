@@ -36,8 +36,8 @@ public abstract class Provider {
 			int startArtiest = respons.indexOf("<artistname>", start) + 12;
 			int stopArtiest = respons.indexOf("</artistname>", startArtiest);
 			Titel = respons.substring(startTitel, stopTitel);
-			Artiest = respons.substring(startArtiest, stopArtiest).toLowerCase()
-					.replaceAll("&amp;", "&");
+			Artiest = respons.substring(startArtiest, stopArtiest)
+					.toLowerCase().replaceAll("&amp;", "&");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Titel = "";
@@ -53,7 +53,8 @@ public abstract class Provider {
 	public static List<Provider> getProviders() {
 		List<Provider> providers = new ArrayList<Provider>();
 		try {
-			Class[] klassen = Introspection.getClasses("providers.implementations");
+			Class[] klassen = Introspection
+					.getClasses("providers.implementations");
 			for (Class klasse : klassen) {
 				providers.add((Provider) klasse.newInstance());
 			}
